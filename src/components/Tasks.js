@@ -28,12 +28,26 @@ class Tasks extends Component {
     ]
   };
 
+  deleteTask = id => {
+    const { tasks } = this.state;
+
+    const newTasks = tasks.filter(task => task.id !== id);
+
+    this.setState({
+      tasks: newTasks
+    });
+  };
+
   render() {
     const { tasks } = this.state;
     return (
       <React.Fragment>
         {tasks.map(task => (
-          <Task key={task.id} task={task} />
+          <Task
+            key={task.id}
+            task={task}
+            deleteHandler={this.deleteTask.bind(this, task.id)}
+          />
         ))}
       </React.Fragment>
     );
