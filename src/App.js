@@ -1,20 +1,31 @@
 import React, { Component } from "react";
-import "./App.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Tasks from "./components/Tasks";
-import Header from "./components/Header";
+import Tasks from "./components/tasks/Tasks";
+import AddTask from "./components/tasks/AddTask";
+import Header from "./components/layout/Header";
+import About from "./components/pages/About";
+import NotFound from "./components/pages/NotFound";
 import { Provider } from "./context";
+import "./App.css";
 
 class App extends Component {
   render() {
     return (
       <Provider>
-        <div className="App">
-          <Header branding="Task Manager" />
-          <div className="container">
-            <Tasks />
+        <Router>
+          <div className="App">
+            <Header branding="Task Manager" />
+            <div className="container d-flex flex-column justify-content-center align-items-center">
+              <Switch>
+                <Route exact path="/" component={Tasks} />
+                <Route exact path="/task/add" component={AddTask} />
+                <Route exact path="/about" component={About} />
+                <Route component={NotFound} />
+              </Switch>
+            </div>
           </div>
-        </div>
+        </Router>
       </Provider>
     );
   }
