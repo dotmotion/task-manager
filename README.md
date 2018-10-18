@@ -1,3 +1,8 @@
-###Task Manager App
+### Task Manager App
 
-This application is built with react, and it's meant as a font-end coding challenge
+- [x] Add new Task
+- [x] Delete Existing Task
+- [ ] Edit Task
+- [ ] Get Timer working
+- [ ] Start / Stop Timer
+- [ ] Add a status to each Task (completed / in progress)
