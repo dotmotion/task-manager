@@ -9,6 +9,11 @@ const reducer = (state, action) => {
         ...state,
         tasks: state.tasks.filter(task => task.id !== action.payload)
       };
+    case "ADD_TASK":
+      return {
+        ...state,
+        tasks: [action.payload, ...state.tasks]
+      };
     default:
       return state;
   }
@@ -19,23 +24,35 @@ export class Provider extends Component {
     tasks: [
       {
         id: 1,
-        name: "Build Task Manager",
-        desc: "React Application",
-        time: "01:30",
+        name: "Test Task 1",
+        desc: "Refactor Component Code",
+        time: {
+          hours: 1,
+          min: 30,
+          sec: 0
+        },
         status: "Work in Progress"
       },
       {
         id: 2,
-        name: "Build Portfolio",
-        desc: "Static Website with SASS",
-        time: "01:00",
+        name: "Test Task 2",
+        desc: "Ressolve Issue #558",
+        time: {
+          hours: 1,
+          min: 0,
+          sec: 0
+        },
         status: "Completed"
       },
       {
         id: 3,
-        name: "Build Budget Manager",
-        desc: "Vanilla JS Budget Application",
-        time: "00:45",
+        name: "Test Task 3",
+        desc: "Answer Emails",
+        time: {
+          hours: 0,
+          min: 30,
+          sec: 0
+        },
         status: "Completed"
       }
     ],
