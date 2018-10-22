@@ -41,7 +41,7 @@ class AddTask extends Component {
       errors: {}
     });
 
-    this.props.history.push("/");
+    this.props.history.push("task-manager/");
   };
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
