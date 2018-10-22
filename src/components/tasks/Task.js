@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Consumer } from "../../context";
-import TaskTimer from "./TaskTimer";
+import Timer from "../timer/Timer";
 
 class Task extends Component {
   deleteItem = (id, dispatch) => {
@@ -29,7 +29,7 @@ class Task extends Component {
 
               <ul className="list-group">
                 <li className="list-group-item">
-                  <TaskTimer props={time} />
+                  <Timer time={time} />
                 </li>
                 <li className="list-group-item">{desc}</li>
               </ul>
