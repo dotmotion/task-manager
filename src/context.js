@@ -26,34 +26,19 @@ export class Provider extends Component {
         id: 1,
         name: "Test Task 1",
         desc: "Refactor Component Code",
-        time: {
-          hours: 1,
-          min: 30,
-          sec: 0
-        },
-        status: "Work in Progress"
+        time: 5400
       },
       {
         id: 2,
         name: "Test Task 2",
         desc: "Ressolve Issue #558",
-        time: {
-          hours: 1,
-          min: 0,
-          sec: 0
-        },
-        status: "Completed"
+        time: 1800
       },
       {
         id: 3,
         name: "Test Task 3",
         desc: "Answer Emails",
-        time: {
-          hours: 0,
-          min: 30,
-          sec: 0
-        },
-        status: "Completed"
+        time: 20
       }
     ],
     dispatch: action => {
