@@ -27,7 +27,7 @@ class AddTask extends Component {
       return;
     }
 
-    if (time === 0) {
+    if (time === 0 || "") {
       this.setState({ errors: { time: "Time is required" } });
       return;
     }
@@ -85,25 +85,40 @@ class AddTask extends Component {
                       Time
                     </label>
 
-                    <div className="d-flex justify-content-center">
-                      <button
-                        className="btn btn-dark mr-2"
-                        onClick={this.onClick.bind(this, 1800)}
-                      >
+                    <div
+                      className="btn-group btn-group-toggle"
+                      data-toggle="buttons"
+                    >
+                      <label className="btn btn-secondary">
+                        <input
+                          type="radio"
+                          name="time"
+                          id="1800"
+                          checked={this.state.time === 1800}
+                          onChange={this.onClick.bind(this, 1800)}
+                        />{" "}
                         30min
-                      </button>
-                      <button
-                        className="btn btn-dark mr-2"
-                        onClick={this.onClick.bind(this, 3600)}
-                      >
+                      </label>
+                      <label className="btn btn-secondary">
+                        <input
+                          type="radio"
+                          name="time"
+                          id="3600"
+                          checked={this.state.time === 3600}
+                          onChange={this.onClick.bind(this, 3600)}
+                        />{" "}
                         1hr
-                      </button>
-                      <button
-                        className="btn btn-dark"
-                        onClick={this.onClick.bind(this, 5400)}
-                      >
+                      </label>
+                      <label className="btn btn-secondary">
+                        <input
+                          type="radio"
+                          name="time"
+                          id="5400"
+                          checked={this.state.time === 5400}
+                          onChange={this.onClick.bind(this, 5400)}
+                        />{" "}
                         1hr 30min
-                      </button>
+                      </label>
                     </div>
 
                     <input
@@ -112,7 +127,8 @@ class AddTask extends Component {
                       className="form-control form-control-lg mt-3"
                       placeholder="Task Time"
                       value={Math.floor(time / 60)}
-                      // onChange={this.onChange}
+                      onChange={this.onChange}
+                      error={errors.time}
                     />
                   </div>
                   <input

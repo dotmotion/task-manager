@@ -12,11 +12,12 @@ class EditTask extends Component {
 
   //   componentDidMount() {
   //     const { id } = this.props.match.params;
-  //     const res = 0; // need to fetch the tasks from the context rpovider or localstorage
+  //     const data = ; // need to fetch the tasks from the context rpovider or localstorage
 
-  //     const task = res.data;
+  //     const task = data;
 
   //     this.setState({
+  //       id: task.id,
   //       name: task.name,
   //       desc: task.desc,
   //       time: task.time
@@ -76,6 +77,7 @@ class EditTask extends Component {
                     value={name}
                     onChange={this.onChange}
                     error={errors.name}
+                    autocomplete="off"
                   />
                   <TextInput
                     label="Descripion"
@@ -84,31 +86,47 @@ class EditTask extends Component {
                     value={desc}
                     onChange={this.onChange}
                     error={errors.desc}
+                    autocomplete="off"
                   />
                   <div className="form-group d-flex flex-column align-items-center">
                     <label htmlFor="time" className="align-self-start">
                       Time
                     </label>
 
-                    <div className="d-flex justify-content-center">
-                      <button
-                        className="btn btn-dark mr-2"
-                        onClick={this.onClick.bind(this, 1800)}
-                      >
+                    <div
+                      className="btn-group btn-group-toggle"
+                      data-toggle="buttons"
+                    >
+                      <label className="btn btn-secondary">
+                        <input
+                          type="radio"
+                          name="time"
+                          id="1800"
+                          checked={this.state.time === 1800}
+                          onChange={this.onClick.bind(this, 1800)}
+                        />{" "}
                         30min
-                      </button>
-                      <button
-                        className="btn btn-dark mr-2"
-                        onClick={this.onClick.bind(this, 3600)}
-                      >
+                      </label>
+                      <label className="btn btn-secondary">
+                        <input
+                          type="radio"
+                          name="time"
+                          id="3600"
+                          checked={this.state.time === 3600}
+                          onChange={this.onClick.bind(this, 3600)}
+                        />{" "}
                         1hr
-                      </button>
-                      <button
-                        className="btn btn-dark"
-                        onClick={this.onClick.bind(this, 5400)}
-                      >
+                      </label>
+                      <label className="btn btn-secondary">
+                        <input
+                          type="radio"
+                          name="time"
+                          id="5400"
+                          checked={this.state.time === 5400}
+                          onChange={this.onClick.bind(this, 5400)}
+                        />{" "}
                         1hr 30min
-                      </button>
+                      </label>
                     </div>
 
                     <input
@@ -117,7 +135,7 @@ class EditTask extends Component {
                       className="form-control form-control-lg mt-3"
                       placeholder="Task Time"
                       value={Math.floor(time / 60)}
-                      // onChange={this.onChange}
+                      onChange={this.onChange}
                       error={errors.time}
                     />
                   </div>
