@@ -67,7 +67,7 @@ class EditTask extends Component {
           const { dispatch } = value;
           return (
             <div className="card mb-3">
-              <div className="card-header">Edit Task</div>
+              <div className="card-header">Edit Task (not working)</div>
               <div className="card-body">
                 <form onSubmit={this.onSubmit.bind(this, dispatch)}>
                   <TextInput
