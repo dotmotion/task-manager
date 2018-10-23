@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Consumer } from "../../context";
 import Timer from "../timer/Timer";
@@ -25,6 +26,17 @@ class Task extends Component {
                   style={{ cursor: "pointer", color: "red", float: "right" }}
                   onClick={this.deleteItem.bind(this, id, dispatch)}
                 />
+                <Link to={`/edit/${id}`}>
+                  <i
+                    className="fas fa-pencil-alt"
+                    style={{
+                      cursor: "pointer",
+                      color: "black",
+                      float: "right",
+                      marginRight: "1rem"
+                    }}
+                  />
+                </Link>
               </h4>
 
               <ul className="list-group">
