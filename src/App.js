@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Tasks from "./components/tasks/Tasks";
 import AddTask from "./components/tasks/AddTask";
@@ -14,7 +14,7 @@ class App extends Component {
   render() {
     return (
       <Provider>
-        <Router basename="/task-manager/">
+        <Router>
           <div className="App">
             <Header branding="Task Manager" />
             <div className="container d-flex flex-column justify-content-center align-items-center">
