@@ -91,20 +91,25 @@ class Timer extends Component {
     const countDown = this.state;
 
     return (
-      <div>
-        <span className="mr-3">
+      <div className="d-flex flex-column justify-content-center align-items-center">
+        <h3>
           <strong>
             {this.addLeadingZeros(countDown.hours)}:
             {this.addLeadingZeros(countDown.min)}:
             {this.addLeadingZeros(countDown.sec)}
           </strong>
-        </span>
-        <button className="mr-1 btn-primary" onClick={this.handleClick}>
-          Start
-        </button>
-        <button className="btn-danger" onClick={this.stop}>
-          stop
-        </button>
+        </h3>
+        <div>
+          <button
+            className="btn-outline-secondary btn-sm"
+            onClick={this.handleClick}
+          >
+            Start
+          </button>
+          <button className="btn-outline-dark btn-sm" onClick={this.stop}>
+            Stop
+          </button>
+        </div>
       </div>
     );
   }
