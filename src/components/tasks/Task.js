@@ -39,7 +39,7 @@ class Task extends Component {
                 </Link>
               </h4>
 
-              <ul className="list-group">
+              <ul className="list-group list-group-flush">
                 <li className="list-group-item">
                   <Timer time={time} />
                 </li>
