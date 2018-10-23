@@ -14,33 +14,29 @@ class Timer extends Component {
 
   componentDidMount() {
     // do something
-    const firstTime = this.props.time;
+    const taskTime = this.props.time;
 
     const totalTime = {
       hours: 0,
       min: 0,
       sec: 0
     };
-    totalTime.hours = Math.floor(firstTime / 3600);
-    const minutesLeft = Math.floor(firstTime % 3600);
+
+    totalTime.hours = Math.floor(taskTime / 3600);
+    const minutesLeft = Math.floor(taskTime % 3600);
     totalTime.min = Math.floor(minutesLeft / 60);
     const secondsLeft = Math.floor(minutesLeft % 60);
     totalTime.sec = secondsLeft;
-    //do something else
+    // Set initial State
     this.setState(totalTime);
   }
 
   Timer = endDate => {
-    // update every second
     this.interval = setInterval(() => {
       const date = this.calculateTimer(endDate);
       date ? this.setState(date) : this.stop();
     }, 1000);
   };
-
-  componentWillUnmount() {
-    this.stop();
-  }
 
   calculateTimer(endDate) {
     let diff = (Date.parse(new Date(endDate)) - Date.parse(new Date())) / 1000;
@@ -96,12 +92,14 @@ class Timer extends Component {
 
     return (
       <div>
-        <span>
-          <strong>{this.addLeadingZeros(countDown.hours)}:</strong>
-          <strong>{this.addLeadingZeros(countDown.min)}:</strong>
-          <strong>{this.addLeadingZeros(countDown.sec)} </strong>
+        <span className="mr-3">
+          <strong>
+            {this.addLeadingZeros(countDown.hours)}:
+            {this.addLeadingZeros(countDown.min)}:
+            {this.addLeadingZeros(countDown.sec)}
+          </strong>
         </span>
-        <button className="btn-primary" onClick={this.handleClick}>
+        <button className="mr-1 btn-primary" onClick={this.handleClick}>
           Start
         </button>
         <button className="btn-danger" onClick={this.stop}>
