@@ -25,3 +25,12 @@
 ## -
 
 - [ ] Persist data on local storage
+
+## Install
+
+```
+git clone https://github.com/dotmotion/task-manager.git
+cd task-manager
+npm install
+npm run start
+```
