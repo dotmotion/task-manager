@@ -24,26 +24,40 @@ export class Provider extends Component {
     tasks: [
       {
         id: 1,
-        name: "Test Task 1",
+        name: "Test 1",
         desc: "Refactor Component Code",
         time: 5400
       },
       {
         id: 2,
-        name: "Test Task 2",
+        name: "Test 2",
         desc: "Ressolve Issue #558",
         time: 1800
       },
       {
         id: 3,
-        name: "Test Task 3",
+        name: "Test 3",
         desc: "Answer Emails",
         time: 20
       }
     ],
     dispatch: action => {
       this.setState(state => reducer(state, action));
+      localStorage.setItem("tasks", JSON.stringify(this.state.tasks));
+      console.log(this.state.tasks);
     }
+  };
+
+  componentDidlMount = () => {
+    localStorage.getItem("tasks") &&
+      this.setState({
+        tasks: JSON.parse(localStorage.getItem("tasks"))
+      });
+  };
+
+  componentDidlUpdate = () => {
+    localStorage.setItem("tasks", JSON.stringify(this.state.tasks));
+    console.log(this.state.tasks);
   };
 
   render() {
