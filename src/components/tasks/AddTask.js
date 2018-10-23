@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import { Consumer } from "../../context";
 import TextInput from "../layout/TextInput";
+import uuid from "uuid";
 
 class AddTask extends Component {
   state = {
     name: "",
     desc: "",
+    time: 0,
     errors: {}
   };
 
@@ -21,11 +23,17 @@ class AddTask extends Component {
     }
 
     if (desc === "") {
-      this.setState({ errors: { desc: "desc is required" } });
+      this.setState({ errors: { desc: "Description is required" } });
+      return;
+    }
+
+    if (time === 0) {
+      this.setState({ errors: { time: "Time is required" } });
       return;
     }
 
     const newTask = {
+      id: uuid(),
       name,
       desc,
       time
@@ -33,21 +41,19 @@ class AddTask extends Component {
 
     dispatch({ type: "ADD_TASK", payload: newTask });
 
-    // Clear State
-    this.setState({
-      name: "",
-      desc: "",
-      time: "",
-      errors: {}
-    });
-
     this.props.history.push("task-manager/");
+  };
+
+  onClick = (selectedTime, e) => {
+    e.preventDefault();
+    e.target.classList.toggle("btn-outline-danger");
+    this.setState({ time: selectedTime });
   };
 
   onChange = e => this.setState({ [e.target.name]: e.target.value });
 
   render() {
-    const { name, desc, time, errors } = this.state;
+    let { name, desc, time, errors } = this.state;
 
     return (
       <Consumer>
@@ -69,21 +75,46 @@ class AddTask extends Component {
                   <TextInput
                     label="Descripion"
                     name="desc"
-                    type="desc"
                     placeholder="Task Description"
                     value={desc}
                     onChange={this.onChange}
                     error={errors.desc}
                   />
-                  <TextInput
-                    label="Time"
-                    name="time"
-                    type="text"
-                    placeholder="Task Time"
-                    value={time}
-                    onChange={this.onChange}
-                    error={errors.time}
-                  />
+                  <div className="form-group d-flex flex-column align-items-center">
+                    <label htmlFor="time" className="align-self-start">
+                      Time
+                    </label>
+
+                    <div className="d-flex justify-content-center">
+                      <button
+                        className="btn btn-dark mr-2"
+                        onClick={this.onClick.bind(this, 1800)}
+                      >
+                        30min
+                      </button>
+                      <button
+                        className="btn btn-dark mr-2"
+                        onClick={this.onClick.bind(this, 3600)}
+                      >
+                        1hr
+                      </button>
+                      <button
+                        className="btn btn-dark"
+                        onClick={this.onClick.bind(this, 5400)}
+                      >
+                        1hr 30min
+                      </button>
+                    </div>
+
+                    <input
+                      // type={type}
+                      name="time"
+                      className="form-control form-control-lg mt-3"
+                      placeholder="Task Time"
+                      value={Math.floor(time / 60)}
+                      // onChange={this.onChange}
+                    />
+                  </div>
                   <input
                     type="submit"
                     value="Add Task"
